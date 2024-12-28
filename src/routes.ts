@@ -3,6 +3,7 @@ import z, { string } from "zod";
 import { FastifyTypedInstance } from "./type";
 import { randomUUID } from "node:crypto";
 const fastify = require('fastify')();
+require('dotenv').config();
 
 interface User {
     id: string,
@@ -11,7 +12,7 @@ interface User {
 }
 const users: User[] = [];
 fastify.register(require('fastify-mongodb'), {
-    url: 'mongodb+srv://thomas:1234@users.h8iqp.mongodb.net/users?retryWrites=true&w=majority&appName=users' // Substitua pela URL de conexão do seu MongoDB
+    url:process.env.MONGO_URL    // Substitua pela URL de conexão do seu MongoDB
 });
 export async function routes(app: FastifyTypedInstance) {
 
