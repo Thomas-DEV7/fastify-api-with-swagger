@@ -36,3 +36,5 @@ app.register(routes)
 app.listen({ port: 3000 }).then(() => {
     console.log('RODANDO SERVER ! ! !')
 })
+
+export { app }; // Adicione isso no final do server.ts
