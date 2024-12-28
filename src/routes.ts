@@ -46,14 +46,24 @@ export async function routes(app: FastifyTypedInstance) {
         return reply.status(201).send();
     });
 
-    // Iniciar o servidor Fastify
-    fastify.listen(3000, (err: any) => {
+    fastify.listen(3000, async (err: any) => {
         if (err) {
             console.error(err);
             process.exit(1);
         }
+
+        // Verificar conexão com MongoDB
+        const db = fastify.mongo.db;
+        try {
+            await db.command({ ping: 1 });
+            console.log('MongoDB connected!');
+        } catch (e) {
+            console.error('MongoDB connection failed:', e);
+        }
+
         console.log('Server listening on http://localhost:3000');
     });
+
 }
 
 
