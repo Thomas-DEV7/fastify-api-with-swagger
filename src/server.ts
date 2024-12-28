@@ -19,7 +19,7 @@ app.setValidatorCompiler(validatorCompiler);
 
 // Conectar ao MongoDB com a URL definida no .env ou padrão local
 app.register(fastifyMongo, {
-    url: process.env.MONGODB_URI || 'mongodb://localhost:27017/your-db-name',  // Substitua 'your-db-name' pelo nome do seu banco de dados
+    url: process.env.MONGODB_URL
 });
 
 // Registrar o middleware CORS
